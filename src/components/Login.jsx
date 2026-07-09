@@ -25,13 +25,15 @@ function Login() {
 
     try {
       const res = await login(user);
-
+     
+      if (res.data.token) {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("customerId", res.data.customerId);
       localStorage.setItem("customerName", res.data.customerName);
       localStorage.setItem("role", res.data.role);
-
+      
       alert("Login Successful");
+      }
 
       navigate("/education");
     } catch (err) {
@@ -49,11 +51,15 @@ function Login() {
           idToken: credentialResponse.credential,
         }
       ); 
+
+     if (res.data.token) {
       localStorage.setItem("token", res.data.token);
-      console.log("Google Login Response:", res.data);
-      // localStorage.setItem("customerId", res.data.customerId);
-      // localStorage.setItem("customerName", res.data.firstName);
-      // localStorage.setItem("role", res.data.role);
+      localStorage.setItem("customerId", res.data.customerId);
+      localStorage.setItem("customerName", res.data.customerName);
+      localStorage.setItem("role", res.data.role);
+      
+      alert("Login Successful");
+      }
 
       alert("Google Login Successful");
 

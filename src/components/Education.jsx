@@ -38,6 +38,15 @@ function Education() {
     });
   };
 
+   //session data  local storage clear
+   window.addEventListener("beforeunload", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("customerId");
+    localStorage.removeItem("customerName");
+    localStorage.removeItem("role");
+   });
+
+
   const handleFileChange = (e) => {
     setCertificate(e.target.files[0]);
   };
