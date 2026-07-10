@@ -27,10 +27,10 @@ function Login() {
       const res = await login(user);
      
       if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("customerId", res.data.customerId);
-      localStorage.setItem("customerName", res.data.customerName);
-      localStorage.setItem("role", res.data.role);
+     console.log (localStorage.setItem("token", res.data.token));
+     console.log(localStorage.setItem("customerId", res.data.customerId));
+     console.log(localStorage.setItem("customerName", res.data.customerName));
+      console.log(localStorage.setItem("role", res.data.role));
       
       alert("Login Successful");
       }
@@ -53,10 +53,11 @@ function Login() {
       ); 
 
      if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("customerId", res.data.customerId);
-      localStorage.setItem("customerName", res.data.customerName);
-      localStorage.setItem("role", res.data.role);
+       console.log (localStorage.setItem("token", res.data.token));
+     console.log(localStorage.setItem("customerId", res.data.customerId));
+     console.log(localStorage.setItem("customerName", res.data.customerName));
+      console.log(localStorage.setItem("role", res.data.role));
+      
       
       alert("Login Successful");
       }
@@ -69,6 +70,29 @@ function Login() {
       alert("Google Login Failed");
     }
   };
+
+
+  // LinkedIn Login
+  // ==========================
+  const handleLinkedInLogin = () => {
+    const clientId = "778we1fuvooq5g";
+    const redirectUri = encodeURIComponent(
+    "http://localhost:5173/linkedin/callback"
+  );
+
+    const state = Math.random().toString(36).substring(2);
+
+    localStorage.setItem("linkedin_state", state);
+
+    window.location.href =
+      `https://www.linkedin.com/oauth/v2/authorization` +
+      `?response_type=code` +
+      `&client_id=${clientId}` +
+      `&redirect_uri=${redirectUri}` +
+      `&scope=openid%20profile%20email` +
+      `&state=${state}`;
+  };
+
 
   return (
     <div className="container">
@@ -102,6 +126,16 @@ function Login() {
           alert("Google Login Failed");
         }}
       />
+
+      <br />
+ 
+      <button
+        type="button"
+        className="btn btn-primary w-100"
+        onClick={handleLinkedInLogin}
+      >
+        Continue with LinkedIn
+      </button>
 
       <br />
 

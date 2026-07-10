@@ -4,6 +4,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Education from "./components/Education";
+import LinkedInCallback from "./components/LinkedInCallback";
 
 import "./App.css";
 
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/linkedin/callback" element={<LinkedInCallback />} />
         <Route path="/education" element={<Education />} />
       </Routes>
     </GoogleOAuthProvider>
