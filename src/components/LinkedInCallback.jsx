@@ -34,24 +34,26 @@ function LinkedInCallback() {
           }
         );
 
-        if (response.data.token)
-           {
-          console.log(localStorage.setItem("token", response.data.token));
-          console.log(localStorage.setItem("customerId", response.data.customerId));
-          console.log(localStorage.setItem("customerName", response.data.customerName));
-          console.log(localStorage.setItem("role", response.data.role));
+        const linkedinUser = response.data.data;
 
-          
-          alert("LinkedIn Login Successful");
+        localStorage.setItem(
+          "linkedinUser",
+          JSON.stringify(linkedinUser)
+        );
 
-          navigate("/education");
-        } else {
-          alert("Login failed.");
-          navigate("/login");
-        }
+        navigate("/");
       } catch (error) {
         console.error(error);
-        alert(error.response?.data?.message || "LinkedIn Login Failed");
+
+        console.log(error.response);
+        console.log(error.response?.data);
+
+        alert(
+          error.response?.data?.errors?.[0] ||
+          error.response?.data?.message ||
+          "LinkedIn Login Failed"
+        );
+
         navigate("/login");
       }
     };
@@ -62,7 +64,7 @@ function LinkedInCallback() {
   return (
     <div className="container text-center mt-5">
       <h3>Signing in with LinkedIn...</h3>
-      <p>Please wait.</p>
+      <p>Please wait...</p>
     </div>
   );
 }

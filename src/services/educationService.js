@@ -14,3 +14,4 @@ export const addEducation = async (formData) => {
   return response.data;
 };
 
+
